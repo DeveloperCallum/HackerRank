@@ -2,7 +2,7 @@ package junit.model_classes;
 
 import callum.hackerrank.problems.MagicSquareGeneticAlgorithm;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TestableMagicSquare extends MagicSquareGeneticAlgorithm {
@@ -10,23 +10,13 @@ public class TestableMagicSquare extends MagicSquareGeneticAlgorithm {
 		super(dataset, agents);
 	}
 
-	public TestableMagicSquare(List<List<Integer>> dataset, List<List<int[]>> buckets, int agentLength) {
-		super(dataset, buckets, agentLength);
+	public TestableMagicSquare(List<List<Integer>> dataset, List<List<int[]>> buckets) {
+		super(dataset, buckets);
 	}
 
 	@Override
-	public double calculateCostFunctionForAgent(int index) {
-		return super.calculateCostFunctionForAgent(index);
-	}
-
-	@Override
-	public double calculatePenaltyFactor() {
-		return super.calculatePenaltyFactor();
-	}
-
-	@Override
-	public int calculateIncorrectRowsColumnsAndDiagonals() {
-		return super.calculateIncorrectRowsColumnsAndDiagonals();
+	public double calculateFitnessForAgent(int agentIndex) {
+		return super.calculateFitnessForAgent(agentIndex);
 	}
 
 	private static void printMatrix(List<List<Integer>> datasetExampleOne) {
