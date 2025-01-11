@@ -14,21 +14,27 @@ public class Logger {
 
 	public Logger(boolean useConsole) {
 		this.useConsole = useConsole;
-		fileName = "Genetic Algorithm Output -" + System.currentTimeMillis();
+		fileName = "Genetic Algorithm Output -" + (System.currentTimeMillis() / 1000);
 	}
 
 	public Logger() {
-		fileName = "Genetic Algorithm Output -" + System.currentTimeMillis();
+		fileName = "Genetic Algorithm Output -" + (System.currentTimeMillis() / 1000);
 	}
 
 	public void printMessage(String message) {
-		if (useConsole) {
-			System.out.println(message);
-			return;
-		}
+		if (!message.isEmpty()){
+			if (!useConsole) {
+				data += Thread.currentThread().getName() + ": " + message + "\n";
+			}
 
-		data += message + "\n";
-		System.out.println(message);
+			System.out.println(Thread.currentThread().getName() + ": " + message);
+		}else{
+			if (!useConsole) {
+				data += message + "\n";
+			}
+
+			System.out.println(message);
+		}
 	}
 
 	public void flush() {

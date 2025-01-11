@@ -1,5 +1,6 @@
-package callum.hackerrank.problems;
+package callum.hackerrank.problems.handlers;
 
+import callum.hackerrank.problems.Logger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.Random;
 public class MagicSquareGeneticAlgorithm {
 	private int total;
 	private final List<List<Integer>> dataset;
-	private List<List<int[]>> buckets = new ArrayList<List<int[]>>();
+	private List<List<int[]>> buckets = new ArrayList<>();
 	private final int agentLength; //How big the agents need to be.
 	private final Logger logger = new Logger(false);
 
@@ -26,6 +27,69 @@ public class MagicSquareGeneticAlgorithm {
 		this.buckets = buckets;
 	}
 
+	public void startGeneration(int itr, Runnable event, Object lock) {
+		startGeneration(itr);
+
+		synchronized (lock) {
+			lock.notify();
+		}
+	}
+
+	public void startGeneration(int itr) {
+		double previousBestFitness = 0;
+		int capturedAt = -1;
+		boolean allowTermination = false;
+		for (int i = 0; i < itr; i++) {
+			if ((i - capturedAt) > 20 && allowTermination) {
+				logger.printMessage("Generation Exited!");
+				break;
+			}
+
+			logger.printMessage("Generation: " + (i + 1));
+			sortByFitness();
+
+			if (i == 0) {
+				previousBestFitness = calculateFitnessForAgent(0);
+				capturedAt = i;
+			}
+
+			//Clone best performer.
+			List<int[]> bestPerformer = cloneAgent(0);
+			double currentLeadFitness = calculateFitnessForAgent(0);
+
+			logger.printMessage("Best Fitness : " + currentLeadFitness);
+			logger.printMessage("Incorrect: " + calculateIncorrectRowsColumnsAndDiagonals(0));
+			logger.printMessage("Worst Fitness: " + calculateFitnessForAgent(buckets.size() - 1));
+			logger.printMessage("Incorrect: " + calculateIncorrectRowsColumnsAndDiagonals(buckets.size() - 1));
+
+			for (int x = 1; x < buckets.size(); x += 2) {
+				if (x < 5) {
+					crossoverParents(x - 1, x);
+				}
+				mutateAgent(x - 1, 0.40);
+				mutateAgent(x, 0.40);
+			}
+
+			logger.printMessage("\n" + ConvertSingleMatrixToString(bestPerformer));
+			buckets.set(buckets.size() - 1, bestPerformer);
+
+			if ((currentLeadFitness < previousBestFitness) && i != 0) {
+				if (calculateIncorrectRowsColumnsAndDiagonals(0) <= 0) {
+					previousBestFitness = calculateFitnessForAgent(0);
+					capturedAt = i;
+					allowTermination = true;
+					logger.printMessage("NEW LEADER!");
+				}
+			} else {
+				logger.printMessage("No change in fitness leader for " + (i - capturedAt) + "!");
+			}
+
+			logger.printMessage("");
+		}
+
+		logger.flush();
+	}
+
 	protected void generateNewAgents(int agentsAmount) {
 		for (int i = 0; i < agentsAmount; i++) {
 			List<int[]> agent = new ArrayList<>(agentLength);
@@ -41,7 +105,7 @@ public class MagicSquareGeneticAlgorithm {
 		}
 	}
 
-	private void mutateAgent(int agentIndex, double mutateRate){
+	private void mutateAgent(int agentIndex, double mutateRate) {
 		List<int[]> agent = buckets.get(agentIndex);
 
 		for (int column = 0; column < agentLength; column++) {
@@ -50,6 +114,7 @@ public class MagicSquareGeneticAlgorithm {
 			}
 		}
 	}
+
 	private void mutateAgentGeneticsAtPosition(List<int[]> agent, double mutationRate, int column, int row) {
 		if (mutationRate > 0.90) {
 			throw new IllegalArgumentException("Mutation rate cannot be higher than 0.90");
@@ -77,6 +142,7 @@ public class MagicSquareGeneticAlgorithm {
 	/**
 	 * Uniform Crossover: Each gene in the offspring is randomly chosen from one of the corresponding genes of the parents.
 	 * This means that each gene has an equal chance of coming from either parent, leading to a high level of genetic diversity.
+	 *
 	 * @param parentA
 	 * @param parentB
 	 */
@@ -107,84 +173,18 @@ public class MagicSquareGeneticAlgorithm {
 		}
 	}
 
-	public void startGeneration(int itr){
-		double previousBestFitness = 0;
-		int capturedAt = -1;
-		boolean allowTermination = false;
-		for (int i = 0; i < itr; i++) {
-			if ((i - capturedAt) > 20 && allowTermination){
-				logger.printMessage("Generation Exited!");
-				break;
-			}
-
-			logger.printMessage("Generation: " + (i + 1));
-			sortByFitness();
-
-			if (i == 0){
-				previousBestFitness = calculateFitnessForAgent(0);
-				capturedAt = i;
-			}
-
-			//Clone best performer.
-			List<int[]> bestPerformer = new ArrayList<>();
-			for (int[] array : buckets.get(0)) {
-				bestPerformer.add(array.clone());
-			}
-
-
-			double currentLeadFitness = calculateFitnessForAgent(0);
-
-			logger.printMessage("Best Fitness : " + currentLeadFitness + "\nIncorrect: " + calculateIncorrectRowsColumnsAndDiagonals(0));
-			logger.printMessage("Worst Fitness: " + calculateFitnessForAgent(buckets.size() - 1) + "\nIncorrect: " + calculateIncorrectRowsColumnsAndDiagonals(buckets.size() - 1));
-
-			for (int x = 1; x < buckets.size(); x+=2) {
-				if (x < 5){
-					crossoverParents(x-1, x);
-				}
-				mutateAgent(x-1, 0.40);
-				mutateAgent(x, 0.40);
-			}
-
-			printSingleMatrix(bestPerformer);
-			buckets.set(buckets.size() - 1, bestPerformer);
-
-			if ((currentLeadFitness < previousBestFitness)){
-				if(calculateIncorrectRowsColumnsAndDiagonals(0) <= 0){
-					previousBestFitness = calculateFitnessForAgent(0);
-					capturedAt = i;
-					allowTermination = true;
-					logger.printMessage("NEW LEADER!");
-				}
-			}else{
-				logger.printMessage("No change in fitness leader for "+ (i - capturedAt) + "!");
-			}
-
-			logger.printMessage("");
-		}
-
-		logger.flush();
+	private void printSingleMatrixToLogger(List<int[]> arr) {
+		logger.printMessage(ConvertSingleMatrixToString(arr));
 	}
 
-	private void printMatrix(List<List<int[]>> arr) {
-		for (List<int[]> agent : arr) {
-			for (int i = 0; i < agent.size(); i++) {
-				int[] row = agent.get(i);
-				logger.printMessage(Arrays.toString(row));
-			}
-
-			logger.printMessage("");
-		}
-	}
-
-	private void printSingleMatrix(List<int[]> arr) {
+	public static String ConvertSingleMatrixToString(List<int[]> arr) {
+		StringBuilder output = new StringBuilder();
 		for (int i = 0; i < arr.size(); i++) {
 			int[] row = arr.get(i);
-			logger.printMessage(Arrays.toString(row));
+			output.append(Arrays.toString(row)).append("\n");
 		}
-	}
 
-	private int calculateTotal() {
-		return (dataset.size() * ((int) Math.pow(dataset.size(), 2) + 1)) / 2;
+		return output.toString();
 	}
 
 	/**
@@ -260,6 +260,7 @@ public class MagicSquareGeneticAlgorithm {
 
 	public void sortByFitness() {
 		for (int x = 0; x < buckets.size(); x++) {
+			boolean swapped = false;
 			for (int i = 0; i < buckets.size() - 1; i++) {
 				for (int j = x; j < buckets.size(); j++) {
 					List<int[]> current = buckets.get(i);
@@ -270,13 +271,45 @@ public class MagicSquareGeneticAlgorithm {
 					if (nextFitness < currentFitness) {
 						buckets.set(i, next);
 						buckets.set(j, current);
+						swapped = true;
 					}
 				}
+			}
+
+			if (!swapped) {
+				break;
 			}
 		}
 	}
 
+	public List<int[]> cloneAgent(List<int[]> agent) {
+		List<int[]> cloned = new ArrayList<>();
+		for (int[] array : agent) {
+			cloned.add(array.clone());
+		}
+
+		return cloned;
+	}
+
+	public List<int[]> cloneAgent(int agentIndex) {
+		List<int[]> cloned = new ArrayList<>();
+		for (int[] array : buckets.get(agentIndex)) {
+			cloned.add(array.clone());
+		}
+
+		return cloned;
+	}
+
 	public List<List<int[]>> getAgents() {
 		return new ArrayList<>(buckets);
+	}
+
+	private int calculateTotal() {
+		return (dataset.size() * ((int) Math.pow(dataset.size(), 2) + 1)) / 2;
+	}
+
+	public List<int[]> getBestAgent() {
+		sortByFitness();
+		return buckets.get(0);
 	}
 }
