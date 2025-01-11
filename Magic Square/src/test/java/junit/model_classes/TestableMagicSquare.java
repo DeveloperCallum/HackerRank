@@ -1,7 +1,8 @@
 package junit.model_classes;
 
-import callum.hackerrank.problems.handlers.MagicSquareGeneticAlgorithm;
+import callum.hackerrank.problems.MagicSquareGeneticAlgorithm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TestableMagicSquare extends MagicSquareGeneticAlgorithm {

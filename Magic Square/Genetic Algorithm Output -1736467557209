@@ -1,0 +1,285 @@
+Generation: 1
+Best Fitness : 343.0
+Incorrect: 6
+Worst Fitness: 972.0
+Incorrect: 8
+[0, 0, 0]
+[1, 0, 0]
+[0, 0, 0]
+No change in fitness leader for 0!
+
+Generation: 2
+Best Fitness : 343.0
+Incorrect: 6
+Worst Fitness: 960.0
+Incorrect: 7
+[0, 0, 0]
+[1, 0, 0]
+[0, 0, 0]
+No change in fitness leader for 1!
+
+Generation: 3
+Best Fitness : 250.0
+Incorrect: 4
+Worst Fitness: 972.0
+Incorrect: 8
+[1, 0, 1]
+[1, 0, 0]
+[0, 3, 0]
+
+Generation: 4
+Best Fitness : 128.0
+Incorrect: 3
+Worst Fitness: 1215.0
+Incorrect: 8
+[2, 0, 0]
+[1, 0, 0]
+[0, 1, 1]
+
+Generation: 5
+Best Fitness : 128.0
+Incorrect: 3
+Worst Fitness: 1088.0
+Incorrect: 7
+[2, 0, 0]
+[1, 0, 0]
+[0, 1, 1]
+
+Generation: 6
+Best Fitness : 128.0
+Incorrect: 3
+Worst Fitness: 1215.0
+Incorrect: 8
+[2, 0, 0]
+[1, 0, 0]
+[0, 1, 1]
+
+Generation: 7
+Best Fitness : 128.0
+Incorrect: 3
+Worst Fitness: 1377.0
+Incorrect: 8
+[2, 0, 0]
+[1, 0, 0]
+[0, 1, 1]
+
+Generation: 8
+Best Fitness : 81.0
+Incorrect: 2
+Worst Fitness: 1782.0
+Incorrect: 8
+[2, 0, 0]
+[1, 0, 0]
+[0, 3, 1]
+
+Generation: 9
+Best Fitness : 81.0
+Incorrect: 2
+Worst Fitness: 1408.0
+Incorrect: 7
+[2, 0, 0]
+[1, 0, 0]
+[0, 3, 1]
+NEW LEADER!
+
+Generation: 10
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1408.0
+Incorrect: 7
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 1!
+
+Generation: 11
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1620.0
+Incorrect: 8
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 2!
+
+Generation: 12
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1782.0
+Incorrect: 8
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 3!
+
+Generation: 13
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1782.0
+Incorrect: 8
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 4!
+
+Generation: 14
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1664.0
+Incorrect: 7
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 5!
+
+Generation: 15
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1944.0
+Incorrect: 8
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 6!
+
+Generation: 16
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1782.0
+Incorrect: 8
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 7!
+
+Generation: 17
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 2025.0
+Incorrect: 8
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 8!
+
+Generation: 18
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1863.0
+Incorrect: 8
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 9!
+
+Generation: 19
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1782.0
+Incorrect: 8
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 10!
+
+Generation: 20
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1782.0
+Incorrect: 8
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 11!
+
+Generation: 21
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 2025.0
+Incorrect: 8
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 12!
+
+Generation: 22
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1216.0
+Incorrect: 7
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 13!
+
+Generation: 23
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1472.0
+Incorrect: 7
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 14!
+
+Generation: 24
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1152.0
+Incorrect: 7
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 15!
+
+Generation: 25
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1620.0
+Incorrect: 8
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 16!
+
+Generation: 26
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1296.0
+Incorrect: 8
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 17!
+
+Generation: 27
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1408.0
+Incorrect: 7
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 18!
+
+Generation: 28
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1863.0
+Incorrect: 8
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 19!
+
+Generation: 29
+Best Fitness : 7.0
+Incorrect: 0
+Worst Fitness: 1701.0
+Incorrect: 8
+[2, 1, 0]
+[1, 0, 0]
+[0, 2, 1]
+No change in fitness leader for 20!
+
+Generation Exited!
